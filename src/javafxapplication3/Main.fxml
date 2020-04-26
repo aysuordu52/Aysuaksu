@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication3.MainController">
+    <stylesheets>
+        <URL value="@main.css" />
+    </stylesheets>
+   <children>
+      <VBox layoutX="14.0" layoutY="7.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="40.0" prefWidth="600.0">
+               <children>
+                  <Label layoutX="180.0" layoutY="18.0" prefHeight="21.0" prefWidth="600.0" style="-fx-background-color: #5f5f5f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="257.0" prefWidth="600.0">
+               <children>
+                  <ImageView fitHeight="231.0" fitWidth="492.0" layoutX="61.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/Icons/35236557_217429672206479_840728801536114688_n.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="93.0" fitWidth="218.0" layoutX="334.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Image/Icons/34321414_213813292568117_4674803436175228928_o.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <AnchorPane prefHeight="337.0" prefWidth="600.0">
+               <children>
+                  <HBox layoutX="14.0" layoutY="14.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <StackPane prefHeight="305.0" prefWidth="300.0">
+                           <children>
+                              <Label prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #5f5f5f; -fx-background-radius: 10px;">
+                                 <graphic>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-radius: 10px;">
+                                       <children>
+                                          <AnchorPane prefHeight="90.0" prefWidth="180.0">
+                                             <children>
+                                                <StackPane prefHeight="90.0" prefWidth="180.0">
+                                                   <children>
+                                                      <ImageView fitHeight="53.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@Image/Icons/team.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </StackPane>
+                                             </children></AnchorPane>
+                                          <StackPane prefHeight="100.0" prefWidth="180.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#changeScreenButtonPushedCalısan" prefHeight="44.0" prefWidth="119.0" style="-fx-background-color: #e8e8e8; -fx-background-radius: 10px;" text="Çalışanlar" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </VBox>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" prefHeight="305.0" prefWidth="300.0">
+                           <children>
+                              <Label prefHeight="196.0" prefWidth="180.0" style="-fx-background-color: #5f5f5f; -fx-background-radius: 10px;">
+                                 <graphic>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <AnchorPane prefHeight="90.0" prefWidth="180.0">
+                                             <children>
+                                                <StackPane layoutX="-5.0" prefHeight="91.0" prefWidth="187.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <ImageView fitHeight="53.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@Image/Icons/news.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </StackPane>
+                                             </children></AnchorPane>
+                                          <StackPane prefHeight="99.0" prefWidth="180.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#changeScreenButtonPushedRapor" prefHeight="44.0" prefWidth="120.0" style="-fx-background-color: #e8e8e8; -fx-background-radius: 10px;" text="Rapor" />
+                                             </children>
+                                          </StackPane>
+                                       </children>
+                                    </VBox>
+                                 </graphic></Label>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
