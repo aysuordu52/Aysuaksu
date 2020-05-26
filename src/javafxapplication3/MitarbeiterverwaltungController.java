@@ -22,12 +22,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import static org.apache.derby.impl.sql.compile.SQLParserConstants.SQL;
 
 /**
  * FXML Controller class
@@ -104,18 +106,24 @@ private TableView tableview;
     @FXML
     private TextField txttc;
     @FXML
+    private TextField txtseviye;
+    @FXML
+    private TextField txtdepartman;
+    @FXML
     private void handleEkle(ActionEvent event){
         Connection c;
         
         try{
         c = (Connection) DB.connect();
-        String query = "insert into bilgi (id,tc,ad,email)"+ "values(?,?,?,?)"; //sqlimizi yazıyoruz. Değeri aşağıda tanımlayacağız. 
+        String query = "insert into bilgi (id,tc,ad,email,seviye,departman)"+ "values(?,?,?,?,?,?)"; //sqlimizi yazıyoruz. Değeri aşağıda tanımlayacağız. 
 
       PreparedStatement preparedStmt = c.prepareStatement(query);
       preparedStmt.setString (1,txtid.getText().toString());
       preparedStmt.setString (2,txttc.getText().toString());
       preparedStmt.setString (3,txtad.getText().toString());
       preparedStmt.setString (4,txtemail.getText().toString());
+      preparedStmt.setString (5,txtseviye.getText().toString());
+      preparedStmt.setString (6,txtdepartman.getText().toString());
       preparedStmt.execute();//komutu çalıştırıyoruz
       tablodoldur();//tablomuzu yeniliyoruz. 
       txtad.setText("");
@@ -134,13 +142,13 @@ private TableView tableview;
         
         try{
         c = (Connection) DB.connect();
-        String query = "delete from bilgi where tc=?"; //sqlimizi yazıyoruz. Değeri aşağıda tanımlayacağız. 
+        String query = "delete from bilgi where id=?"; //sqlimizi yazıyoruz. 
 
       PreparedStatement preparedStmt = c.prepareStatement(query);
-      preparedStmt.setString (1,txttc.getText().toString());
+      preparedStmt.setString (1,txtid.getText().toString());
       preparedStmt.execute();//komutu çalıştırıyoruz
       tablodoldur();//tablomuzu yeniliyoruz. 
-      txttc.setText("");//txtadi temizliyoruz. 
+      txttc.setText("");//txttc temizliyoruz. 
       
         }
         catch(Exception e){
@@ -153,12 +161,14 @@ private TableView tableview;
         
         try{
         c = (Connection) DB.connect();
-        String query = "Update bilgi set ad=? , email=? where tc=?"; //sqlimizi yazıyoruz. Değeri aşağıda tanımlayacağız. 
+        String query = "Update bilgi set ad=? , email=? , seviye=? , departman=? where id=?"; //sqlimizi yazıyoruz
 
       PreparedStatement preparedStmt = c.prepareStatement(query);
       preparedStmt.setString (1,txtad.getText().toString());
       preparedStmt.setString (2,txtemail.getText().toString());
-      preparedStmt.setString (3,txttc.getText().toString());
+      preparedStmt.setString (3,txtseviye.getText().toString());
+      preparedStmt.setString (4,txtdepartman.getText().toString());
+      preparedStmt.setString (5,txtid.getText().toString());
       preparedStmt.execute();//komutu çalıştırıyoruz
       tablodoldur();//tablomuzu yeniliyoruz. 
       txttc.setText("");//txtadi temizliyoruz. 
@@ -197,6 +207,7 @@ private TableView tableview;
         window.show();
         
     }
+
     /**
      * Initializes the controller class.
      */

@@ -28,6 +28,7 @@ public class DB {
     private static String url = "jdbc:mysql://localhost:3306/java?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"; //veritabanımın adı java
     private static String user = "root"; //kullanıcı adı
     private static String pass = "Aysuaksu12*";//şifre
+    private ResultSet rs;
  
     public static Connection connect() throws SQLException{
         try{

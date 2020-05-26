@@ -35,7 +35,7 @@
         </columns>
       </TableView>
       <TextField fx:id="txtad" layoutX="81.0" layoutY="500.0" prefHeight="26.0" prefWidth="188.0" promptText="Adınızı giriniz" />
-      <Button layoutX="345.0" layoutY="561.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#handleEkle" prefHeight="32.0" prefWidth="94.0" text="Ekle">
+      <Button layoutX="346.0" layoutY="606.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#handleEkle" prefHeight="32.0" prefWidth="94.0" text="Ekle">
          <effect>
             <Lighting>
                <bumpInput>
@@ -58,7 +58,7 @@
             </Lighting>
          </effect></Button>
       <TextField fx:id="txtid" layoutX="81.0" layoutY="435.0" prefHeight="26.0" prefWidth="188.0" promptText="Id giriniz" />
-      <Button layoutX="119.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleSil" prefHeight="32.0" prefWidth="87.0" text="Sil">
+      <Button layoutX="119.0" layoutY="606.0" mnemonicParsing="false" onAction="#handleSil" prefHeight="32.0" prefWidth="87.0" text="Sil">
          <effect>
             <Lighting>
                <bumpInput>
@@ -83,7 +83,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button layoutX="231.0" layoutY="561.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="32.0" prefWidth="94.0" text="Düzenle">
+      <Button layoutX="231.0" layoutY="606.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="32.0" prefWidth="94.0" text="Düzenle">
          <effect>
             <Lighting>
                <bumpInput>
@@ -95,5 +95,7 @@
             </Lighting>
          </effect>
       </Button>
+      <TextField fx:id="txtseviye" layoutX="81.0" layoutY="549.0" prefHeight="29.0" prefWidth="188.0" promptText="Seviyenizi giriniz" />
+      <TextField fx:id="txtdepartman" layoutX="294.0" layoutY="549.0" prefHeight="26.0" prefWidth="188.0" promptText="Departmanınızı giriniz" />
    </children>
 </AnchorPane>
