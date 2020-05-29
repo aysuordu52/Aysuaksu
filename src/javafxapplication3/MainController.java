@@ -44,6 +44,28 @@ public class MainController implements Initializable {
         window.show();
         
     }
+        public void changeScreenButtonPushedFirma(ActionEvent event) throws IOException{
+        Parent firmaParent =FXMLLoader.load(getClass().getResource("FirmaBilgisi.fxml"));
+        Scene firmaScene = new Scene(firmaParent);
+        
+        Stage window= (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(firmaScene);
+        window.show();
+        
+    }
+        public void changeScreenButtonPushedEkipman(ActionEvent event) throws IOException{
+        Parent ekipmanParent =FXMLLoader.load(getClass().getResource("EkipmanBilgisi.fxml"));
+        Scene ekipmanScene = new Scene(ekipmanParent);
+        
+        Stage window= (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(ekipmanScene);
+        window.show();
+        
+    }
+
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

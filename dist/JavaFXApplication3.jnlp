@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JavaFXApplication3.jar" size="291809" download="eager" />
+    <jar href="JavaFXApplication3.jar" size="301835" download="eager" />
     <jar href="lib/SparseBitSet-1.2.jar" size="24510" download="eager" />
     <jar href="lib/activation-1.1.1.jar" size="69409" download="eager" />
     <jar href="lib/commons-codec-1.13.jar" size="344339" download="eager" />
@@ -19,12 +19,14 @@
     <jar href="lib/derby.jar" size="2838580" download="eager" />
     <jar href="lib/derbyclient.jar" size="586237" download="eager" />
     <jar href="lib/derbynet.jar" size="248898" download="eager" />
+    <jar href="lib/itextpdf-5.5.13.1.jar" size="2330916" download="eager" />
     <jar href="lib/jaxb-api-2.3.1.jar" size="128076" download="eager" />
     <jar href="lib/jaxb-core-2.3.0.1.jar" size="254858" download="eager" />
     <jar href="lib/jaxb-impl-2.3.2.jar" size="1017695" download="eager" />
     <jar href="lib/junit-4.12.jar" size="314932" download="eager" />
     <jar href="lib/log4j-1.2.17.jar" size="489884" download="eager" />
     <jar href="lib/mysql-connector-java-8.0.19.jar" size="2356711" download="eager" />
+    <jar href="lib/pdfbox-2.0.19.jar" size="2715618" download="eager" />
     <jar href="lib/poi-4.1.2.jar" size="2915337" download="eager" />
     <jar href="lib/poi-examples-4.1.2.jar" size="377209" download="eager" />
     <jar href="lib/poi-excelant-4.1.2.jar" size="31321" download="eager" />

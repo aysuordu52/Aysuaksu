@@ -6,65 +6,67 @@
 package javafxapplication3;
 
 
-import java.awt.Desktop.Action;
+
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFCell;  
+import org.apache.poi.ss.util.CellRangeAddress;  
 import java.io.FileNotFoundException;  
 import java.io.FileOutputStream;  
 import java.io.IOException;  
 import java.io.InputStream;
 import java.io.OutputStream;  
-import static java.lang.System.load;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;  
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.StringProperty;
-import javafx.event.Event;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.CheckBox;
+import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 import org.apache.commons.compress.utils.IOUtils;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;  
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;  
-import org.apache.poi.ss.usermodel.VerticalAlignment;  
 import org.apache.poi.ss.usermodel.Cell;  
 import org.apache.poi.ss.usermodel.CellStyle;  
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;  
-import org.apache.poi.ss.usermodel.Drawing;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;  
+import org.apache.poi.ss.usermodel.Drawing; 
 import org.apache.poi.ss.usermodel.Row;  
 import org.apache.poi.ss.usermodel.Sheet;  
 import org.apache.poi.ss.usermodel.Workbook;  
-import org.apache.poi.xssf.usermodel.XSSFCell;  
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;  
 import org.apache.poi.ss.usermodel.Picture;
-import org.apache.poi.ss.usermodel.RichTextString;
+
+
 
 
 /**
@@ -72,46 +74,42 @@ import org.apache.poi.ss.usermodel.RichTextString;
  * @author aysuaksu
  */
 public class BerichtController implements Initializable {
-    ObservableList<String> TeklifNochoiceBoxList = FXCollections.observableArrayList("A","B","C");
-    ObservableList<String> MusterichoiceBoxList = FXCollections.observableArrayList("TAG GEMİ","AAA");
+
     ObservableList<String> ProjeAdıchoiceBoxList = FXCollections.observableArrayList("KAYNAKÇI TESTİ","AAA");
-    ObservableList<String> YuzeyDurumuchoiceBoxList = FXCollections.observableArrayList("After Welding","asdfaf");
     ObservableList<String> MuayeneDurumuchoiceBoxList = FXCollections.observableArrayList("Untreated");
     ObservableList<String> AkımTipichoiceBoxList=FXCollections.observableArrayList("AC","DC");
     ObservableList<String> SonucchoiceBoxList=FXCollections.observableArrayList("OK","RED");
        
     
     
-    private Label label;
-    @FXML
-    private AnchorPane A;
-    ScrollPane scrollPane = new ScrollPane(A);
+
+            
     @FXML
     private ChoiceBox TeklifNochoiceBox;
     @FXML
     private ChoiceBox MusterichoiceBox;
-     @FXML
+    @FXML
     private ChoiceBox ProjeAdıchoiceBox;  
     @FXML
     private ChoiceBox YuzeyDurumuchoiceBox;
     @FXML
     private ChoiceBox MuayeneDurumuchoiceBox;
-     @FXML
+    @FXML
     private ChoiceBox AkımTipichoiceBox;
-     @FXML
+    @FXML
     public ChoiceBox SonucchoiceBox;
      
      @FXML
     private TextField txtad; 
-          @FXML
+    @FXML
     private TextField txt1;   
-          @FXML
+    @FXML
     private TextField txt2;  
-          @FXML
+    @FXML
     private TextField txt3;    
-          @FXML
+    @FXML
     private TextField txt4;   
-          @FXML
+     @FXML
     private TextField txt5;
       @FXML
     private TextField txt6;
@@ -133,7 +131,6 @@ public class BerichtController implements Initializable {
     private TextField txt14;
      @FXML
     private TextField txt15;
-       
     @FXML
     private TextField txt16;
     @FXML
@@ -388,24 +385,89 @@ public class BerichtController implements Initializable {
     private TextField ad2;
     @FXML
     private TextField txtAd;
-     @FXML
+    @FXML
     private TextField txttc;
-     @FXML
+    @FXML
     private ComboBox combobox;
-     @FXML
+    @FXML
     private TextField txtseviye;
-     @FXML
+    @FXML
     private TextField txtseviye1;
-     @FXML
+    @FXML
     private TextField txtseviye2;
-     @FXML
+    @FXML
     private ComboBox combobox1;
-     @FXML
+    @FXML
     private ComboBox combobox2;
+    @FXML
+    private ComboBox ekipman;
+       
+    @FXML
+    private ComboBox IsEmri;
+    @FXML
+    private Button PDF;
+       
+            
+    private FileChooser fc = new FileChooser();
     
+   
+
     
-    private String ad3;
-    
+    @FXML
+    private VBox v;
+
+        public void PDF(ActionEvent event){
+            StackPane root = new StackPane(v);
+            
+             try {
+            WritableImage nodeshot = root.snapshot(new SnapshotParameters(), null);
+
+           
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            ImageIO.write(SwingFXUtils.fromFXImage(nodeshot, null), "png", output);
+            output.close();
+
+            PDDocument doc = new PDDocument();
+            PDPage page = new PDPage();
+            PDImageXObject pdimage;
+            PDPageContentStream content;
+
+            pdimage = PDImageXObject.createFromByteArray(doc, output.toByteArray(), "png");
+            content = new PDPageContentStream(doc, page);
+
+            
+            PDRectangle box = page.getMediaBox();
+            double factor = Math.min(box.getWidth() / nodeshot.getWidth(), box.getHeight() / nodeshot.getHeight());
+
+            float height = (float) (nodeshot.getHeight() * factor);
+
+            
+            content.drawImage(pdimage, 0, box.getHeight() - height, (float) (nodeshot.getWidth() * factor), height);
+
+            content.close();
+            doc.addPage(page);
+
+            File outputFile = new File("Rapor.pdf");
+
+            doc.save(outputFile);
+            doc.close();
+
+           System.out.println("PDF çevrildi");
+        
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+
+        }
+        
+        
+
+     
+
+     
+
+        
     
    
     
@@ -426,7 +488,7 @@ public class BerichtController implements Initializable {
             
            
              CellStyle style = wb.createCellStyle();  
-            style.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            style.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             style.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
              cell = row.createCell(3); 
              sheet.addMergedRegion(new CellRangeAddress(0,0,3,9));
@@ -444,7 +506,7 @@ public class BerichtController implements Initializable {
              cs.setBorderLeft(BorderStyle.THIN);
              cs.setBorderRight(BorderStyle.THIN);
              cs.setBorderTop(BorderStyle.THIN);   
-             cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
              cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
              cs.setWrapText(true);  
              cell.setCellStyle(cs);  
@@ -456,7 +518,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(2,2,0,1));
             cell.setCellValue("Müşteri\nCustomer ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -465,13 +527,13 @@ public class BerichtController implements Initializable {
             
             cell = row.createCell(2); 
             sheet.addMergedRegion(new CellRangeAddress(2,2,2,3));
-            cell.setCellValue(MusterichoiceBox.getItems().addAll("TAG GEMİ","AAA"));
+            cell.setCellValue((String)MusterichoiceBox.getSelectionModel().getSelectedItem());
             
             cell = row.createCell(4); 
             sheet.addMergedRegion(new CellRangeAddress(2,2,4,5));
             cell.setCellValue("Muayene Prosedürü\nInspection Procedure");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -485,7 +547,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(2,2,7,8));
             cell.setCellValue("Sayfa No\nPage ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -500,7 +562,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(3,3,0,1));
             cell.setCellValue("Proje Adı\nProject Name  ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -510,14 +572,14 @@ public class BerichtController implements Initializable {
              cell = row.createCell(2); 
             sheet.addMergedRegion(new CellRangeAddress(3,3,2,3));
             System.out.println(ProjeAdıchoiceBox.getItems());
-            cell.setCellValue(ProjeAdıchoiceBox.getItems().addAll("Ad","soyad"));
+            cell.setCellValue((String)ProjeAdıchoiceBox.getSelectionModel().getSelectedItem());
             
             
             cell = row.createCell(4); 
             sheet.addMergedRegion(new CellRangeAddress(3,3,4,5));
             cell.setCellValue("Muayene Kapsamı\nInspection Scope ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -530,7 +592,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(3,3,7,8));
             cell.setCellValue("Rapor No\nReport No ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -545,7 +607,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(4,4,0,1));
             cell.setCellValue("Test Yeri\nInspection Place ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -561,7 +623,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(4,4,4,5));
             cell.setCellValue("Resim No\nDrawing No ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -574,12 +636,16 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(4,4,7,8));
             cell.setCellValue("Rapor Tarihi \nReport Date");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
+            
+                       
+            cell = row.createCell(9); 
+            cell.setCellValue(txt136.getText());
 
                        
             row= sheet.createRow(5);  
@@ -587,7 +653,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(5,5,0,1));
             cell.setCellValue("Muayene Standardı\nInspection Standart");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -603,7 +669,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(5,5,4,5));
             cell.setCellValue("Yüzey Durumu\nSurface Condition");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -611,27 +677,28 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
                         
             cell = row.createCell(6); 
-            cell.setCellValue(YuzeyDurumuchoiceBox.getItems().addAll("After Welding","asdfaf"));
+            cell.setCellValue((String)YuzeyDurumuchoiceBox.getSelectionModel().getSelectedItem());
             
                        
             cell = row.createCell(7); 
             sheet.addMergedRegion(new CellRangeAddress(5,5,7,8));
             cell.setCellValue(" İş Emri No\nJob Order No");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
-            
+            cell = row.createCell(9); 
+            cell.setCellValue((String)IsEmri.getSelectionModel().getSelectedItem());
                        
             row= sheet.createRow(6);  
             cell = row.createCell(0); 
             sheet.addMergedRegion(new CellRangeAddress(6,6,0,1));
             cell.setCellValue("Değerlen. Standardı\nEvaluation Standart");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -647,7 +714,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(6,6,4,5));
             cell.setCellValue("Muayene Aşaması\nStage Of Examination");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -655,13 +722,13 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
                       
             cell = row.createCell(6); 
-            cell.setCellValue(MuayeneDurumuchoiceBox.getItems().addAll("Untreated"));
+            cell.setCellValue((String)MuayeneDurumuchoiceBox.getSelectionModel().getSelectedItem());
                        
             cell = row.createCell(7); 
             sheet.addMergedRegion(new CellRangeAddress(6,6,7,8));
             cell.setCellValue("Teklif No\nOffer No");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -670,7 +737,7 @@ public class BerichtController implements Initializable {
             
 
             cell = row.createCell(9); 
-            cell.setCellValue(TeklifNochoiceBox.getItems().addAll("A","B","C"));
+            cell.setCellValue((String)TeklifNochoiceBox.getSelectionModel().getSelectedItem());
             
             
              row= sheet.createRow(7);  
@@ -678,7 +745,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(7,7,0,9));
             cell.setCellValue("                                                         Ekipman Bilgileri/ Equipment Informations");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cell.setCellStyle(cs); 
             
@@ -688,7 +755,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(8,8,0,1));
             cell.setCellValue("Kutup Mesafesi,mm\nPole Distance");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -703,7 +770,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(8,8,4,5));
             cell.setCellValue("Muayene Bölgesi \nExamination Area");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -717,7 +784,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(8,8,7,8));
             cell.setCellValue("Yüzey Sıcaklığı (ºC)\nSurface Temperature");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -733,7 +800,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(9,9,0,1));
             cell.setCellValue("Cihaz\nEquipment");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -748,7 +815,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(9,9,4,5));
             cell.setCellValue("Akım Tipi\nCurrent Type");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -762,7 +829,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(9,10,7,8));
             cell.setCellValue("Muayene Bölgesindeki Alan Şiddeti, kA/m\nGauss Field Strength");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -779,7 +846,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(10,10,0,1));
             cell.setCellValue("MP Taşıyıcı Ortam\nMP Carrier Medium");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -795,7 +862,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(10,10,4,5));
             cell.setCellValue("Luxmetre/Işık Şiddeti\nLuxmeter");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -813,7 +880,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(11,11,0,1));
             cell.setCellValue("Mıknatıslama Tekniği\nMag.Tech.");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -828,7 +895,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(11,11,4,5));
             cell.setCellValue("Muayene Ortamı\nTest Medium");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -842,7 +909,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(11,11,7,8));
             cell.setCellValue("Yüzey\nSurface Condition");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -859,7 +926,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(12,12,0,1));
             cell.setCellValue("UV Işık Şiddeti\nUV Light Intensity");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -875,7 +942,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(12,12,4,5));
             cell.setCellValue("Mıknatıs Giderimi\nDemagnetization");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -889,7 +956,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(12,12,7,8));
             cell.setCellValue("Işık Cihazı Tanımı\nIdentification of Light Equip.");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -905,7 +972,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(13,13,0,1));
             cell.setCellValue("Işık mesafesi\nDistance of Light");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -920,7 +987,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(13,13,4,5));
             cell.setCellValue("Isıl İşlem\nHeat Treatment");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -934,7 +1001,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(13,13,7,8));
             cell.setCellValue("Kaldırma Testi Tarih / No\nLifting Test Date / Number");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -989,7 +1056,7 @@ public class BerichtController implements Initializable {
              cell = row.createCell(5); 
             cell.setCellValue("BM");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
             cell.setCellStyle(cs);  
             
@@ -997,7 +1064,7 @@ public class BerichtController implements Initializable {
              sheet.addMergedRegion(new CellRangeAddress(15,15,6,9));
             cell.setCellValue("Ana Metal / Base Metal");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
             cell.setCellStyle(cs);  
             
@@ -1006,7 +1073,7 @@ public class BerichtController implements Initializable {
              cell = row.createCell(5); 
             cell.setCellValue("HAZ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
             cell.setCellStyle(cs);  
             
@@ -1014,7 +1081,7 @@ public class BerichtController implements Initializable {
              sheet.addMergedRegion(new CellRangeAddress(16,16,6,9));
             cell.setCellValue("Isıdan etkilenen bölge / Heat afffected zone");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
             cell.setCellStyle(cs);
             
@@ -1023,7 +1090,7 @@ public class BerichtController implements Initializable {
              cell = row.createCell(5); 
             cell.setCellValue("W");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
             cell.setCellStyle(cs);  
             
@@ -1031,7 +1098,7 @@ public class BerichtController implements Initializable {
              sheet.addMergedRegion(new CellRangeAddress(17,17,6,9));
             cell.setCellValue("Kaynak / Weld");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
             cell.setCellStyle(cs);            
 
@@ -1039,7 +1106,7 @@ public class BerichtController implements Initializable {
              cell = row.createCell(5); 
             cell.setCellValue("B");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
             cell.setCellStyle(cs);  
             
@@ -1059,7 +1126,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(19,19,0,4));
             cell.setCellValue("Standarttan Sapmalar\nStandard Deviations");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1075,7 +1142,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(20,20,0,4));
             cell.setCellValue("Muayene Tarihleri\nInspection Dates");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1093,7 +1160,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(21,21,0,4));
             cell.setCellValue("Açıklamalar ve Ekler\nDescription and Attachments");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1109,7 +1176,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(22,22,0,9));
             cell.setCellValue("                                             Muayene Sonuçları / Inspection Results");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1118,7 +1185,7 @@ public class BerichtController implements Initializable {
              cell = row.createCell(0); 
             cell.setCellValue("Sıra No\nSerial No");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1129,7 +1196,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(23,23,1,2));
             cell.setCellValue("Kaynak/ Parça No\nWeld/ Piece No");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1139,7 +1206,7 @@ public class BerichtController implements Initializable {
             cell = row.createCell(3); 
             cell.setCellValue("Kontrol Uzun.\nTest Lenght");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1149,7 +1216,7 @@ public class BerichtController implements Initializable {
             cell = row.createCell(4); 
             cell.setCellValue("Kaynak Yön.\nWelding Process");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1159,7 +1226,7 @@ public class BerichtController implements Initializable {
             cell = row.createCell(5); 
             cell.setCellValue("Kalınlık (mm)\nThickness");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1169,7 +1236,7 @@ public class BerichtController implements Initializable {
             cell = row.createCell(6); 
             cell.setCellValue("Çap (mm)\nDiameter");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1179,7 +1246,7 @@ public class BerichtController implements Initializable {
             cell = row.createCell(7); 
             cell.setCellValue("Hata Tipi\nDefect Type");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1190,7 +1257,7 @@ public class BerichtController implements Initializable {
             cell = row.createCell(8); 
             cell.setCellValue("Hatanın Yeri\nDefect Loc.");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1201,7 +1268,7 @@ public class BerichtController implements Initializable {
             cell = row.createCell(9); 
             cell.setCellValue("Sonuç\nResult");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1609,7 +1676,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(39,39,0,1));
             cell.setCellValue("Personel Bilgileri /\nPerson. Infor. ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);
@@ -1623,7 +1690,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(39,39,2,3));
             cell.setCellValue("Operatör /\nOperator");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs); 
@@ -1635,7 +1702,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(39,39,4,5));
             cell.setCellValue("Değerlendiren /\nEvaluated by ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);  
@@ -1645,7 +1712,7 @@ public class BerichtController implements Initializable {
             cell.setCellValue("Onay /\nConfirmation "); 
             sheet.addMergedRegion(new CellRangeAddress(39,39,6,7));
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);
@@ -1657,7 +1724,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(39,39,8,9));
             cell.setCellValue("Müşteri /\nCustomer");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);
@@ -1669,7 +1736,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(40,40,0,1));
             cell.setCellValue("Adı Soyadı /Name Surname ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);
@@ -1703,7 +1770,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(41,41,0,1));
             cell.setCellValue("Seviye / Level ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);
@@ -1731,7 +1798,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(42,42,0,1));
             cell.setCellValue("Tarih / Date ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);
@@ -1741,7 +1808,7 @@ public class BerichtController implements Initializable {
             sheet.addMergedRegion(new CellRangeAddress(43,44,0,1));
             cell.setCellValue("İmza / Signature ");  
             cs = wb.createCellStyle();  
-            cs.setFillForegroundColor(IndexedColors.PINK.getIndex());  
+            cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setWrapText(true);  
             cell.setCellStyle(cs);
@@ -1771,8 +1838,7 @@ public class BerichtController implements Initializable {
      
       public void Excel3(TextField ad1) throws IOException {
            
-        
-            
+   
             System.out.println("ad yazıldı 3" + ad1.getText());
             
            
@@ -1881,20 +1947,53 @@ public class BerichtController implements Initializable {
     
         
     }
+    public void Ekipman() throws IOException{
+    
+        Connection c;
+             try{
+                 c = (Connection) DB.connect();
+                 
+                 String query = "Select * from Ekipman_Bilgileri where EkipmanAd=? ";
+                 
+                 
+                 PreparedStatement preparedStmt = c.prepareStatement(query);
+                 
+                 preparedStmt.setString(1,(String)ekipman.getSelectionModel().getSelectedItem());
+                 
+                 ResultSet rs = preparedStmt.executeQuery();
+                 
+                 while(rs.next()){
+                     
+                     txt9.setText(rs.getString("KutupMesafesi"));
+                     txt10.setText(rs.getString("Cihaz"));
+                     txt11.setText(rs.getString("MPTaşıyıcıOrtam"));
+                     txt12.setText(rs.getString("MıknatıslamaTekniği"));
+                     txt13.setText(rs.getString("UVIşıkŞiddeti"));
+                     txt14.setText(rs.getString("IşıkMesafesi"));
+                     
+                     
+                 }
+                 preparedStmt.close();
+                 rs.close();
+                 
+             }
+             catch(SQLException e){
+                 System.out.println(e.toString());
+             }
+     
+    System.out.println("Ekipman seçildi");
+    
+        
+    }
             
     
         @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-     TeklifNochoiceBox.setItems(TeklifNochoiceBoxList);
-     TeklifNochoiceBox.setValue("mmm");
-     MusterichoiceBox.setItems(MusterichoiceBoxList);
-     MusterichoiceBox.setValue("mmm");
+     
      ProjeAdıchoiceBox.setItems(ProjeAdıchoiceBoxList);
      ProjeAdıchoiceBox.setValue("mmm");
-     YuzeyDurumuchoiceBox.setItems(YuzeyDurumuchoiceBoxList);
-     YuzeyDurumuchoiceBox.setValue("mmm");
-     MuayeneDurumuchoiceBox.setItems(YuzeyDurumuchoiceBoxList);
+     MuayeneDurumuchoiceBox.setItems(MuayeneDurumuchoiceBoxList);
      MuayeneDurumuchoiceBox.setValue("mmm");
      AkımTipichoiceBox.setItems(AkımTipichoiceBoxList);
      AkımTipichoiceBox.setValue("mmm");
@@ -1903,6 +2002,7 @@ public class BerichtController implements Initializable {
      
     
      Connection c;
+
      
     System.out.println("ss");
     
@@ -1975,12 +2075,119 @@ public class BerichtController implements Initializable {
             System.out.println(e.toString());
         }
         
-       
-
+              
+        try{
+        c = (Connection) DB.connect();
+ 
+        String query = "Select EkipmanAd from Ekipman_Bilgileri "; 
         
-  
+      
+      PreparedStatement preparedStmt = c.prepareStatement(query);
+      ResultSet rs = preparedStmt.executeQuery();
+      
+      
+      while(rs.next()){
+          ekipman.getItems().addAll(rs.getString("EkipmanAd"));
+          
+      
+      }
+      preparedStmt.close();
+      rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+                
+        try{
+        c = (Connection) DB.connect();
+ 
+        String query = "Select Müsteri from Firma_Bilgileri "; 
+        
+      
+      PreparedStatement preparedStmt = c.prepareStatement(query);
+      ResultSet rs = preparedStmt.executeQuery();
+      
+      
+      while(rs.next()){
+          MusterichoiceBox.getItems().addAll(rs.getString("Müsteri"));
+          
+      
+      }
+      preparedStmt.close();
+      rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+                
+                
+        try{
+        c = (Connection) DB.connect();
+ 
+        String query = "Select YüzeyDurumu from Firma_Bilgileri "; 
+        
+      
+      PreparedStatement preparedStmt = c.prepareStatement(query);
+      ResultSet rs = preparedStmt.executeQuery();
+      
+      
+      while(rs.next()){
+          YuzeyDurumuchoiceBox.getItems().addAll(rs.getString("YüzeyDurumu"));
+          
+      
+      }
+      preparedStmt.close();
+      rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+                
+        try{
+        c = (Connection) DB.connect();
+ 
+        String query = "Select İşEmriNo from Firma_Bilgileri "; 
+        
+      
+      PreparedStatement preparedStmt = c.prepareStatement(query);
+      ResultSet rs = preparedStmt.executeQuery();
+      
+      
+      while(rs.next()){
+         IsEmri.getItems().addAll(rs.getString("İşEmriNo"));
+          
+      
+      }
+      preparedStmt.close();
+      rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+        
+         try{
+        c = (Connection) DB.connect();
+ 
+        String query = "Select TeklifNo from Firma_Bilgileri "; 
+        
+      
+      PreparedStatement preparedStmt = c.prepareStatement(query);
+      ResultSet rs = preparedStmt.executeQuery();
+      
+      
+      while(rs.next()){
+         TeklifNochoiceBox.getItems().addAll(rs.getString("TeklifNo"));
+          
+      
+      }
+      preparedStmt.close();
+      rs.close();
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
 
-       
 
     }
 
@@ -1997,14 +2204,5 @@ public class BerichtController implements Initializable {
        public TextField getAd1() {
         return txt133;
     }
-
-
-
-       
-
-
-
-
-
-    
+  
 }
