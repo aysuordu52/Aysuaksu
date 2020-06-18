@@ -40,10 +40,22 @@ public class MitarbeiterverwaltungController implements Initializable {
      
     private ObservableList<ObservableList> data;
 
-
-@FXML
-private TableView tableview;
- private void tablodoldur()
+     @FXML
+    private TextField txtad; 
+     @FXML
+    private TextField txtid;
+     @FXML
+    private TextField txtemail;
+    @FXML
+    private TextField txttc;
+    @FXML
+    private TextField txtseviye;
+    @FXML
+    private TextField txtdepartman;
+    @FXML
+    private TableView tableview;
+ 
+    private void tablodoldur()
     {
         tableview.getColumns().clear();
           Connection c ;
@@ -89,7 +101,7 @@ private TableView tableview;
               System.out.println("Hata oluştu");             
           }
     }
- @FXML
+      @FXML
 
       private void handleButtonAction(ActionEvent event) {
 
@@ -97,25 +109,15 @@ private TableView tableview;
        tablodoldur();
 
 }
-     @FXML
-    private TextField txtad; 
-     @FXML
-    private TextField txtid;
-     @FXML
-    private TextField txtemail;
-    @FXML
-    private TextField txttc;
-    @FXML
-    private TextField txtseviye;
-    @FXML
-    private TextField txtdepartman;
+      
+   
     @FXML
     private void handleEkle(ActionEvent event){
         Connection c;
         
         try{
         c = (Connection) DB.connect();
-        String query = "insert into bilgi (id,tc,ad,email,seviye,departman)"+ "values(?,?,?,?,?,?)"; //sqlimizi yazıyoruz. Değeri aşağıda tanımlayacağız. 
+        String query = "insert into bilgi (id,tc,ad,email,seviye,departman)"+ "values(?,?,?,?,?,?)"; //sqlimizi yazıyoruz 
 
       PreparedStatement preparedStmt = c.prepareStatement(query);
       preparedStmt.setString (1,txtid.getText().toString());
@@ -130,13 +132,15 @@ private TableView tableview;
       txtid.setText("");//temizliyoruz. 
       txttc.setText("");
       txtemail.setText("");
+      txtseviye.setText("");   
+      txtdepartman.setText("");
       
         }
         catch(Exception e){
             System.out.println(e.toString());
         }
     }
-      @FXML //SİLME İŞLEMİ
+      @FXML 
     private void handleSil(ActionEvent event){
         Connection c;
         
@@ -148,14 +152,14 @@ private TableView tableview;
       preparedStmt.setString (1,txtid.getText().toString());
       preparedStmt.execute();//komutu çalıştırıyoruz
       tablodoldur();//tablomuzu yeniliyoruz. 
-      txttc.setText("");//txttc temizliyoruz. 
+      txtid.setText("");//txttc temizliyoruz. 
       
         }
         catch(Exception e){
             System.out.println(e.toString());
         }
     }
-          @FXML //SİLME İŞLEMİ
+     @FXML 
     private void handleUpdate(ActionEvent event){
         Connection c;
         
@@ -174,6 +178,8 @@ private TableView tableview;
       txttc.setText("");//txtadi temizliyoruz. 
       txtad.setText("");   
       txtemail.setText("");
+      txtseviye.setText("");   
+      txtdepartman.setText("");
      
       
         }

@@ -377,16 +377,11 @@ public class BerichtController implements Initializable {
     @FXML
     private TextField txt136;
     @FXML
-    private TextField txt137;
-    @FXML
-    private TextField txt138;
+
     
     private TextField ad1;
     private TextField ad2;
-    @FXML
-    private TextField txtAd;
-    @FXML
-    private TextField txttc;
+
     @FXML
     private ComboBox combobox;
     @FXML
@@ -482,7 +477,7 @@ public class BerichtController implements Initializable {
             Row row = sheet.createRow(0);  
             Cell cell = row.createCell(0);  
             cell.setCellValue(""); 
-            sheet.addMergedRegion(new CellRangeAddress(0,1,0,2));
+            sheet.addMergedRegion(new CellRangeAddress(0,1,0,3));
             CellStyle cellStyle = wb.createCellStyle();  
             
             
@@ -490,22 +485,18 @@ public class BerichtController implements Initializable {
              CellStyle style = wb.createCellStyle();  
             style.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             style.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
-             cell = row.createCell(3); 
-             sheet.addMergedRegion(new CellRangeAddress(0,0,3,9));
+             cell = row.createCell(4); 
+             sheet.addMergedRegion(new CellRangeAddress(0,0,4,11));
              cell.setCellValue("                          GÖZETİM MUAYENE VE EĞİTİM HİZMETLERİ "); 
              cell.setCellStyle(style);
              
              
 
              row = sheet.createRow(1);
-             cell = row.createCell(3); 
-             sheet.addMergedRegion(new CellRangeAddress(1,1,3,9));
+             cell = row.createCell(4); 
+             sheet.addMergedRegion(new CellRangeAddress(1,1,4,11));
              cell.setCellValue("                          MANYETİK PARÇACIK MUAYENE RAPORU \n                           MAGNETIC PARTICLE INSPECTION REPORT ");  
-             CellStyle cs = wb.createCellStyle();  
-             cs.setBorderBottom(BorderStyle.THIN);
-             cs.setBorderLeft(BorderStyle.THIN);
-             cs.setBorderRight(BorderStyle.THIN);
-             cs.setBorderTop(BorderStyle.THIN);   
+             CellStyle cs = wb.createCellStyle();    
              cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
              cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
              cs.setWrapText(true);  
@@ -541,10 +532,11 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
              cell = row.createCell(6); 
+             sheet.addMergedRegion(new CellRangeAddress(2,2,6,7));
             cell.setCellValue(txt4.getText());
             
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(2,2,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(2,2,8,9));
             cell.setCellValue("Sayfa No\nPage ");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -554,7 +546,8 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-             cell = row.createCell(9); 
+             cell = row.createCell(10); 
+             sheet.addMergedRegion(new CellRangeAddress(2,2,10,11));
             cell.setCellValue(txt7.getText());
                       
             row= sheet.createRow(3);  
@@ -585,11 +578,12 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);  
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
-            cell = row.createCell(6); 
+            cell = row.createCell(6);
+            sheet.addMergedRegion(new CellRangeAddress(3,3,6,7));
             cell.setCellValue(txt5.getText());
                        
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(3,3,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(3,3,8,9));
             cell.setCellValue("Rapor No\nReport No ");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -598,7 +592,8 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);  
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
-            cell = row.createCell(9); 
+            cell = row.createCell(10);
+            sheet.addMergedRegion(new CellRangeAddress(3,3,10,11));
             cell.setCellValue(txt8.getText());
             
                        
@@ -630,10 +625,11 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             cell = row.createCell(6); 
+            sheet.addMergedRegion(new CellRangeAddress(4,4,6,7));
             cell.setCellValue(txt6.getText());
                        
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(4,4,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(4,4,8,9));
             cell.setCellValue("Rapor Tarihi \nReport Date");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -644,7 +640,8 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
                        
-            cell = row.createCell(9); 
+            cell = row.createCell(10);
+            sheet.addMergedRegion(new CellRangeAddress(4,4,10,11));
             cell.setCellValue(txt136.getText());
 
                        
@@ -676,12 +673,13 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
                         
-            cell = row.createCell(6); 
+            cell = row.createCell(6);
+            sheet.addMergedRegion(new CellRangeAddress(5,5,6,7));
             cell.setCellValue((String)YuzeyDurumuchoiceBox.getSelectionModel().getSelectedItem());
             
                        
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(5,5,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(5,5,8,9));
             cell.setCellValue(" İş Emri No\nJob Order No");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -690,7 +688,8 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);  
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
-            cell = row.createCell(9); 
+            cell = row.createCell(10);
+            sheet.addMergedRegion(new CellRangeAddress(5,5,10,11));
             cell.setCellValue((String)IsEmri.getSelectionModel().getSelectedItem());
                        
             row= sheet.createRow(6);  
@@ -721,11 +720,12 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
                       
-            cell = row.createCell(6); 
+            cell = row.createCell(6);
+            sheet.addMergedRegion(new CellRangeAddress(6,6,6,7));
             cell.setCellValue((String)MuayeneDurumuchoiceBox.getSelectionModel().getSelectedItem());
                        
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(6,6,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(6,6,8,9));
             cell.setCellValue("Teklif No\nOffer No");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -736,13 +736,14 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
 
-            cell = row.createCell(9); 
+            cell = row.createCell(10); 
+            sheet.addMergedRegion(new CellRangeAddress(6,6,10,11));
             cell.setCellValue((String)TeklifNochoiceBox.getSelectionModel().getSelectedItem());
             
-            
+            //burada kaldım
              row= sheet.createRow(7);  
              cell = row.createCell(0); 
-            sheet.addMergedRegion(new CellRangeAddress(7,7,0,9));
+            sheet.addMergedRegion(new CellRangeAddress(7,7,0,11));
             cell.setCellValue("                                                         Ekipman Bilgileri/ Equipment Informations");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -778,10 +779,11 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
              cell = row.createCell(6); 
+             sheet.addMergedRegion(new CellRangeAddress(8,8,6,7));
             cell.setCellValue(txt15.getText());
             
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(8,8,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(8,8,8,9));
             cell.setCellValue("Yüzey Sıcaklığı (ºC)\nSurface Temperature");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -791,7 +793,8 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-             cell = row.createCell(9); 
+             cell = row.createCell(10); 
+             sheet.addMergedRegion(new CellRangeAddress(8,8,10,11));
             cell.setCellValue(txt20.getText());
             
                       
@@ -822,11 +825,12 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-             cell = row.createCell(6); 
+             cell = row.createCell(6);
+             sheet.addMergedRegion(new CellRangeAddress(9,9,6,7));
             cell.setCellValue(AkımTipichoiceBox.getItems().addAll("AC","DC"));
             
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(9,10,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(9,10,8,9));
             cell.setCellValue("Muayene Bölgesindeki Alan Şiddeti, kA/m\nGauss Field Strength");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -836,8 +840,8 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-             cell = row.createCell(9); 
-             sheet.addMergedRegion(new CellRangeAddress(9,10,9,9));
+             cell = row.createCell(10); 
+             sheet.addMergedRegion(new CellRangeAddress(9,10,10,11));
             cell.setCellValue(txt21.getText());
             
                       
@@ -869,7 +873,8 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-             cell = row.createCell(6); 
+             cell = row.createCell(6);
+             sheet.addMergedRegion(new CellRangeAddress(10,10,6,7));
             cell.setCellValue(txt16.getText());
             
 
@@ -903,10 +908,11 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
              cell = row.createCell(6); 
+             sheet.addMergedRegion(new CellRangeAddress(11,11,6,7));
             cell.setCellValue(txt17.getText());
             
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(11,11,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(11,11,8,9));
             cell.setCellValue("Yüzey\nSurface Condition");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -916,7 +922,8 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-             cell = row.createCell(9); 
+             cell = row.createCell(10); 
+             sheet.addMergedRegion(new CellRangeAddress(11,11,10,11));
             cell.setCellValue(txt22.getText());
             
             
@@ -950,10 +957,11 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
              cell = row.createCell(6); 
+             sheet.addMergedRegion(new CellRangeAddress(12,12,6,7));
             cell.setCellValue(txt18.getText());
             
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(12,12,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(12,12,8,9));
             cell.setCellValue("Işık Cihazı Tanımı\nIdentification of Light Equip.");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -963,7 +971,8 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-            cell = row.createCell(9); 
+            cell = row.createCell(10); 
+            sheet.addMergedRegion(new CellRangeAddress(12,12,10,11));
             cell.setCellValue(txt23.getText());
             
                         
@@ -995,10 +1004,11 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
              cell = row.createCell(6); 
+             sheet.addMergedRegion(new CellRangeAddress(13,13,6,7));
             cell.setCellValue(txt19.getText());
             
-            cell = row.createCell(7); 
-            sheet.addMergedRegion(new CellRangeAddress(13,13,7,8));
+            cell = row.createCell(8); 
+            sheet.addMergedRegion(new CellRangeAddress(13,13,8,9));
             cell.setCellValue("Kaldırma Testi Tarih / No\nLifting Test Date / Number");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1008,7 +1018,8 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-            cell = row.createCell(9); 
+            cell = row.createCell(10); 
+            sheet.addMergedRegion(new CellRangeAddress(13,13,10,11));
             cell.setCellValue(txt24.getText());
             
             
@@ -1048,7 +1059,7 @@ public class BerichtController implements Initializable {
           
              row= sheet.createRow(14);  
              cell = row.createCell(5); 
-            sheet.addMergedRegion(new CellRangeAddress(14,14,5,9));
+            sheet.addMergedRegion(new CellRangeAddress(14,14,5,11));
             cell.setCellValue("Süreksizliğin Yeri / Location of Discontinuity");  
   
           
@@ -1061,7 +1072,7 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);  
             
             cell = row.createCell(6); 
-             sheet.addMergedRegion(new CellRangeAddress(15,15,6,9));
+             sheet.addMergedRegion(new CellRangeAddress(15,15,6,11));
             cell.setCellValue("Ana Metal / Base Metal");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1078,7 +1089,7 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);  
             
             cell = row.createCell(6); 
-             sheet.addMergedRegion(new CellRangeAddress(16,16,6,9));
+             sheet.addMergedRegion(new CellRangeAddress(16,16,6,11));
             cell.setCellValue("Isıdan etkilenen bölge / Heat afffected zone");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1095,7 +1106,7 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);  
             
             cell = row.createCell(6); 
-             sheet.addMergedRegion(new CellRangeAddress(17,17,6,9));
+             sheet.addMergedRegion(new CellRangeAddress(17,17,6,11));
             cell.setCellValue("Kaynak / Weld");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1111,7 +1122,7 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);  
             
              cell = row.createCell(6); 
-             sheet.addMergedRegion(new CellRangeAddress(18,18,6,9));
+             sheet.addMergedRegion(new CellRangeAddress(18,18,6,11));
             cell.setCellValue("Kaynak ağzı / Bevel ");  
              cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.WHITE.getIndex());  
@@ -1134,7 +1145,7 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
                         
             cell = row.createCell(5); 
-            sheet.addMergedRegion(new CellRangeAddress(19,19,5,9));
+            sheet.addMergedRegion(new CellRangeAddress(19,19,5,11));
             cell.setCellValue(txt25.getText());
             
             row= sheet.createRow(20);  
@@ -1150,7 +1161,7 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
                         
             cell = row.createCell(5); 
-            sheet.addMergedRegion(new CellRangeAddress(20,20,5,9));
+            sheet.addMergedRegion(new CellRangeAddress(20,20,5,11));
             cell.setCellValue(txt26.getText());
             
             
@@ -1168,12 +1179,12 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
                         
             cell = row.createCell(5); 
-            sheet.addMergedRegion(new CellRangeAddress(21,21,5,9));
+            sheet.addMergedRegion(new CellRangeAddress(21,21,5,11));
             cell.setCellValue(txt27.getText());
             
             row= sheet.createRow(22);  
              cell = row.createCell(0); 
-            sheet.addMergedRegion(new CellRangeAddress(22,22,0,9));
+            sheet.addMergedRegion(new CellRangeAddress(22,22,0,11));
             cell.setCellValue("                                             Muayene Sonuçları / Inspection Results");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1193,7 +1204,7 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
              cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(23,23,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(23,23,1,3));
             cell.setCellValue("Kaynak/ Parça No\nWeld/ Piece No");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1203,7 +1214,7 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue("Kontrol Uzun.\nTest Lenght");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1213,7 +1224,8 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
                        
-            cell = row.createCell(4); 
+            cell = row.createCell(5); 
+            sheet.addMergedRegion(new CellRangeAddress(23,23,5,6));
             cell.setCellValue("Kaynak Yön.\nWelding Process");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1223,7 +1235,7 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
                         
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue("Kalınlık (mm)\nThickness");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1233,7 +1245,7 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
                         
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue("Çap (mm)\nDiameter");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1243,7 +1255,7 @@ public class BerichtController implements Initializable {
             row.setHeightInPoints((2*sheet.getDefaultRowHeightInPoints()));  
             sheet.autoSizeColumn(2);
                         
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue("Hata Tipi\nDefect Type");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1254,7 +1266,7 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
                         
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue("Hatanın Yeri\nDefect Loc.");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1265,7 +1277,7 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
             
                         
-            cell = row.createCell(9); 
+            cell = row.createCell(11); 
             cell.setCellValue("Sonuç\nResult");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1280,54 +1292,55 @@ public class BerichtController implements Initializable {
             cell.setCellValue("1");  
                         
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(24,24,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(24,24,1,3));
             cell.setCellValue(txt35.getText());
             
-            cell = row.createCell(3); 
-            cell.setCellValue(txt42.getText());
-            
-            cell = row.createCell(3); 
-            cell.setCellValue(txt42.getText());
-            
             cell = row.createCell(4); 
-            cell.setCellValue(txt58.getText());
+            cell.setCellValue(txt42.getText());
             
             cell = row.createCell(5); 
-            cell.setCellValue(txt73.getText());
-            
-            cell = row.createCell(6); 
-            cell.setCellValue(txt88.getText());
+            sheet.addMergedRegion(new CellRangeAddress(24,24,5,6));
+            cell.setCellValue(txt58.getText());
             
             cell = row.createCell(7); 
-            cell.setCellValue(txt103.getText());
+            cell.setCellValue(txt73.getText());
             
             cell = row.createCell(8); 
+            cell.setCellValue(txt88.getText());
+            
+            cell = row.createCell(9); 
+            cell.setCellValue(txt103.getText());
+            
+            cell = row.createCell(10); 
             cell.setCellValue(txt118.getText());
+            
+
                         
             row= sheet.createRow(25);  
             cell = row.createCell(0); 
             cell.setCellValue("2"); 
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(25,25,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(25,25,1,3));
             cell.setCellValue(txt36.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt43.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(25,25,5,6));
             cell.setCellValue(txt59.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt74.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt89.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt104.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt119.getText());
                        
             row= sheet.createRow(26);  
@@ -1335,25 +1348,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("3");
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(26,26,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(26,26,1,3));
             cell.setCellValue(txt37.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt44.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5); 
+            sheet.addMergedRegion(new CellRangeAddress(26,26,5,6));
             cell.setCellValue(txt60.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt75.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt90.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt105.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt120.getText());
             
                        
@@ -1362,25 +1376,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("4"); 
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(27,27,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(27,27,1,3));
             cell.setCellValue(txt38.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt45.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(27,27,5,6));
             cell.setCellValue(txt61.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt76.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt91.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt106.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt121.getText());
             
                         
@@ -1389,25 +1404,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("5");
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(28,28,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(28,28,1,3));
             cell.setCellValue(txt39.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt46.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5); 
+            sheet.addMergedRegion(new CellRangeAddress(28,28,5,6));
             cell.setCellValue(txt62.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt77.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt92.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt107.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt122.getText());
                         
             row= sheet.createRow(29);  
@@ -1415,25 +1431,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("6");
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(29,29,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(29,29,1,3));
             cell.setCellValue(txt40.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt48.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5); 
+            sheet.addMergedRegion(new CellRangeAddress(29,29,5,6));
             cell.setCellValue(txt63.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt78.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt93.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt108.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt123.getText());
             
             row= sheet.createRow(30);  
@@ -1441,25 +1458,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("7");
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(30,30,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(30,30,1,3));
             cell.setCellValue(txt41.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt49.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5); 
+            sheet.addMergedRegion(new CellRangeAddress(30,30,5,6));
             cell.setCellValue(txt64.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt79.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt94.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt109.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt124.getText());
             
             row= sheet.createRow(31);  
@@ -1467,25 +1485,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("8");
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(31,31,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(31,31,1,3));
             cell.setCellValue(txt28.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt50.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(31,31,5,6));
             cell.setCellValue(txt65.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt80.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt95.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt110.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt125.getText());
             
             row= sheet.createRow(32);  
@@ -1493,25 +1512,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("9");
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(32,32,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(32,32,1,3));
             cell.setCellValue(txt29.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt51.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(32,32,5,6));
             cell.setCellValue(txt66.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt81.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt96.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt111.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt126.getText());
             
             row= sheet.createRow(33);  
@@ -1519,25 +1539,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("10");
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(33,33,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(33,33,1,3));
             cell.setCellValue(txt30.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt52.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(33,33,5,6));
             cell.setCellValue(txt67.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt82.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt97.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt112.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt127.getText());
             
             row= sheet.createRow(34);  
@@ -1545,25 +1566,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("11"); 
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(34,34,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(34,34,1,3));
             cell.setCellValue(txt31.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt53.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(34,34,5,6));
             cell.setCellValue(txt68.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt83.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt98.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt113.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt128.getText());
             
             row= sheet.createRow(35);  
@@ -1571,25 +1593,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("12");
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(35,35,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(35,35,1,3));
             cell.setCellValue(txt32.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt54.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(35,35,5,6));
             cell.setCellValue(txt69.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt84.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt99.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt114.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt129.getText());
             
             row= sheet.createRow(36);  
@@ -1597,25 +1620,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("13"); 
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(36,36,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(36,36,1,3));
             cell.setCellValue(txt33.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt55.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(36,36,5,6));
             cell.setCellValue(txt70.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt85.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt100.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt115.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt130.getText());
             
             row= sheet.createRow(37);  
@@ -1623,25 +1647,26 @@ public class BerichtController implements Initializable {
             cell.setCellValue("14"); 
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(37,37,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(37,37,1,3));
             cell.setCellValue(txt34.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt56.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(37,37,5,6));
             cell.setCellValue(txt71.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt86.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt101.getText());
             
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt116.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt131.getText());
             
             row= sheet.createRow(38);  
@@ -1649,31 +1674,32 @@ public class BerichtController implements Initializable {
             cell.setCellValue("15"); 
             
             cell = row.createCell(1); 
-            sheet.addMergedRegion(new CellRangeAddress(38,38,1,2));
+            sheet.addMergedRegion(new CellRangeAddress(38,38,1,3));
             cell.setCellValue(txt47.getText());
             
-            cell = row.createCell(3); 
+            cell = row.createCell(4); 
             cell.setCellValue(txt57.getText());
             
-            cell = row.createCell(4); 
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(38,38,5,6));
             cell.setCellValue(txt72.getText());
             
-            cell = row.createCell(5); 
+            cell = row.createCell(7); 
             cell.setCellValue(txt87.getText());
             
-            cell = row.createCell(6); 
+            cell = row.createCell(8); 
             cell.setCellValue(txt102.getText());
  
-            cell = row.createCell(7); 
+            cell = row.createCell(9); 
             cell.setCellValue(txt117.getText());
             
-            cell = row.createCell(8); 
+            cell = row.createCell(10); 
             cell.setCellValue(txt132.getText());
             
                          
             row= sheet.createRow(39);  
             cell = row.createCell(0); 
-            sheet.addMergedRegion(new CellRangeAddress(39,39,0,1));
+            sheet.addMergedRegion(new CellRangeAddress(39,39,0,2));
             cell.setCellValue("Personel Bilgileri /\nPerson. Infor. ");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1686,8 +1712,8 @@ public class BerichtController implements Initializable {
             
 
             
-             cell = row.createCell(2); 
-            sheet.addMergedRegion(new CellRangeAddress(39,39,2,3));
+             cell = row.createCell(3); 
+            sheet.addMergedRegion(new CellRangeAddress(39,39,3,4));
             cell.setCellValue("Operatör /\nOperator");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1698,8 +1724,8 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
 
             
-            cell = row.createCell(4);
-            sheet.addMergedRegion(new CellRangeAddress(39,39,4,5));
+            cell = row.createCell(5);
+            sheet.addMergedRegion(new CellRangeAddress(39,39,5,6));
             cell.setCellValue("Değerlendiren /\nEvaluated by ");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1708,9 +1734,9 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);  
 
                        
-            cell = row.createCell(6); 
+            cell = row.createCell(7); 
             cell.setCellValue("Onay /\nConfirmation "); 
-            sheet.addMergedRegion(new CellRangeAddress(39,39,6,7));
+            sheet.addMergedRegion(new CellRangeAddress(39,39,7,8));
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
@@ -1720,8 +1746,8 @@ public class BerichtController implements Initializable {
             sheet.autoSizeColumn(2);
 
                         
-            cell = row.createCell(8);
-            sheet.addMergedRegion(new CellRangeAddress(39,39,8,9));
+            cell = row.createCell(9);
+            sheet.addMergedRegion(new CellRangeAddress(39,39,9,11));
             cell.setCellValue("Müşteri /\nCustomer");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1733,7 +1759,7 @@ public class BerichtController implements Initializable {
             
             row= sheet.createRow(40);  
             cell = row.createCell(0); 
-            sheet.addMergedRegion(new CellRangeAddress(40,40,0,1));
+            sheet.addMergedRegion(new CellRangeAddress(40,40,0,2));
             cell.setCellValue("Adı Soyadı /Name Surname ");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1743,20 +1769,20 @@ public class BerichtController implements Initializable {
             
             
           
-            cell = row.createCell(2); 
-            sheet.addMergedRegion(new CellRangeAddress(40,40,2,3));
+            cell = row.createCell(3); 
+            sheet.addMergedRegion(new CellRangeAddress(40,40,3,4));
             cell.setCellValue((String)combobox.getSelectionModel().getSelectedItem());  
       
-           cell = row.createCell(4); 
-           sheet.addMergedRegion(new CellRangeAddress(40,40,4,5));
+           cell = row.createCell(5); 
+           sheet.addMergedRegion(new CellRangeAddress(40,40,5,6));
            cell.setCellValue((String)combobox1.getSelectionModel().getSelectedItem()); 
            
-           cell = row.createCell(6); 
-           sheet.addMergedRegion(new CellRangeAddress(40,40,6,7));
+           cell = row.createCell(7); 
+           sheet.addMergedRegion(new CellRangeAddress(40,40,7,8));
            cell.setCellValue((String)combobox2.getSelectionModel().getSelectedItem());
            
-           cell = row.createCell(8); 
-           sheet.addMergedRegion(new CellRangeAddress(40,40,8,9));
+           cell = row.createCell(9); 
+           sheet.addMergedRegion(new CellRangeAddress(40,40,9,11));
            cell.setCellValue(txt134.getText());
 
         
@@ -1767,7 +1793,7 @@ public class BerichtController implements Initializable {
              
             row= sheet.createRow(41);  
             cell = row.createCell(0); 
-            sheet.addMergedRegion(new CellRangeAddress(41,41,0,1));
+            sheet.addMergedRegion(new CellRangeAddress(41,41,0,2));
             cell.setCellValue("Seviye / Level ");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1775,27 +1801,27 @@ public class BerichtController implements Initializable {
             cs.setWrapText(true);  
             cell.setCellStyle(cs);
            
-            cell = row.createCell(2); 
-           sheet.addMergedRegion(new CellRangeAddress(41,41,2,3));
+            cell = row.createCell(3); 
+           sheet.addMergedRegion(new CellRangeAddress(41,41,3,4));
            cell.setCellValue(txtseviye.getText());
            
-           cell = row.createCell(4); 
-           sheet.addMergedRegion(new CellRangeAddress(41,41,4,5));
+           cell = row.createCell(5); 
+           sheet.addMergedRegion(new CellRangeAddress(41,41,5,6));
            cell.setCellValue(txtseviye1.getText());
            
-           cell = row.createCell(6); 
-           sheet.addMergedRegion(new CellRangeAddress(41,41,6,7));
+           cell = row.createCell(7); 
+           sheet.addMergedRegion(new CellRangeAddress(41,41,7,8));
            cell.setCellValue(txtseviye2.getText());
            
-           cell = row.createCell(8); 
-           sheet.addMergedRegion(new CellRangeAddress(41,41,8,9));
+           cell = row.createCell(9); 
+           sheet.addMergedRegion(new CellRangeAddress(41,41,9,11));
            cell.setCellValue(txt135.getText());
            
            
             
             row= sheet.createRow(42);  
             cell = row.createCell(0); 
-            sheet.addMergedRegion(new CellRangeAddress(42,42,0,1));
+            sheet.addMergedRegion(new CellRangeAddress(42,42,0,2));
             cell.setCellValue("Tarih / Date ");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1805,7 +1831,7 @@ public class BerichtController implements Initializable {
 
             row= sheet.createRow(43);  
             cell = row.createCell(0); 
-            sheet.addMergedRegion(new CellRangeAddress(43,44,0,1));
+            sheet.addMergedRegion(new CellRangeAddress(43,44,0,2));
             cell.setCellValue("İmza / Signature ");  
             cs = wb.createCellStyle();  
             cs.setFillForegroundColor(IndexedColors.ROSE.getIndex());  
@@ -1814,17 +1840,17 @@ public class BerichtController implements Initializable {
             cell.setCellStyle(cs);
                         
  
-            cell = row.createCell(2); 
-            sheet.addMergedRegion(new CellRangeAddress(43,44,2,3));
+            cell = row.createCell(3); 
+            sheet.addMergedRegion(new CellRangeAddress(43,44,3,4));
             
-            cell = row.createCell(4); 
-            sheet.addMergedRegion(new CellRangeAddress(43,44,4,5));
+            cell = row.createCell(5); 
+            sheet.addMergedRegion(new CellRangeAddress(43,44,5,6));
 
-            cell = row.createCell(6); 
-            sheet.addMergedRegion(new CellRangeAddress(43,44,6,7));
+            cell = row.createCell(7); 
+            sheet.addMergedRegion(new CellRangeAddress(43,44,7,8));
             
-            cell = row.createCell(8); 
-            sheet.addMergedRegion(new CellRangeAddress(43,44,8,9));
+            cell = row.createCell(9); 
+            sheet.addMergedRegion(new CellRangeAddress(43,44,9,11));
             
           
           wb.write(os);  

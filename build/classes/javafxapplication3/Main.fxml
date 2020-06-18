@@ -19,19 +19,19 @@
          <children>
             <AnchorPane prefHeight="40.0" prefWidth="600.0">
                <children>
-                  <Label layoutX="180.0" layoutY="18.0" prefHeight="21.0" prefWidth="600.0" style="-fx-background-color: #5f5f5f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Button layoutX="175.0" layoutY="5.0" mnemonicParsing="false" onAction="#changeScreenButtonPushedFirma" prefHeight="32.0" prefWidth="107.0" style="-fx-background-color: #e8e8e8; -fx-background-radius: 3px;" text="Firma Bilgileri" />
-                  <Button layoutX="300.0" layoutY="5.0" mnemonicParsing="false" onAction="#changeScreenButtonPushedEkipman" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #e8e8e8; -fx-background-radius: 3px;" text="Ekipman Bilgileri" />
+                  <Label layoutX="180.0" layoutY="18.0" prefHeight="63.0" prefWidth="600.0" style="-fx-background-color: #5f5f5f;" AnchorPane.bottomAnchor="-23.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button layoutX="159.0" layoutY="17.0" mnemonicParsing="false" onAction="#changeScreenButtonPushedFirma" prefHeight="32.0" prefWidth="107.0" style="-fx-background-color: #e8e8e8; -fx-background-radius: 3px;" text="Firma Bilgileri" />
+                  <Button layoutX="300.0" layoutY="17.0" mnemonicParsing="false" onAction="#changeScreenButtonPushedEkipman" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #e8e8e8; -fx-background-radius: 3px;" text="Ekipman Bilgileri" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="257.0" prefWidth="600.0">
                <children>
-                  <ImageView fitHeight="231.0" fitWidth="492.0" layoutX="61.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="231.0" fitWidth="492.0" layoutX="61.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Image/Icons/35236557_217429672206479_840728801536114688_n.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="93.0" fitWidth="218.0" layoutX="334.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="93.0" fitWidth="218.0" layoutX="334.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Image/Icons/34321414_213813292568117_4674803436175228928_o.png" />
                      </image>

@@ -147,7 +147,7 @@
                                     </children>
                                  </VBox>
                                  <TextField prefHeight="35.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                 <TextField fx:id="txt1" prefHeight="37.0" prefWidth="209.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <TextField fx:id="txt1" prefHeight="37.0" prefWidth="209.0" text="İzmit" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                     <font>
                                        <Font size="14.0" />
                                     </font>
@@ -320,7 +320,7 @@
                         <children>
                            <VBox prefHeight="200.0" prefWidth="1000.0">
                               <children>
-                                 <Label prefHeight="30.0" prefWidth="996.0" style="-fx-border-style: solid;" text="                                                  Ekipman Bilgileri/ Equipment Informations    " textAlignment="CENTER">
+                                 <Label prefHeight="21.0" prefWidth="996.0" style="-fx-border-style: solid;" text="                                                  Ekipman Bilgileri/ Equipment Informations    " textAlignment="CENTER">
                                     <font>
                                        <Font name="Arial Hebrew Scholar" size="14.0" />
                                     </font>
